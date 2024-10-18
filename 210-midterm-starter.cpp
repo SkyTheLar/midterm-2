@@ -188,7 +188,7 @@ public:
     void print() {
         Node* current = head;
         if (!current) {
-            cout << "List is empty." << endl;
+            cout << "List is empty.\n" << endl;
             return;
         }
         while (current) {
@@ -201,7 +201,7 @@ public:
     void print_reverse() {
         Node* current = tail;
         if (!current) { 
-            cout << "List is empty." << endl;
+            cout << "List is empty.\n" << endl;
             return;
         }
         while (current) {
@@ -275,19 +275,20 @@ int main() {
     for (int i = 2; i <= 20; i++) {
     	cout << "Time step #" << i << endl;
     	//different probability checks
-    	if (prob() <= 40 && line.length() != 0)
-    		helped(line);
     	if (prob() <= 60)
-    		newCus(line);
-    	if (prob() <= 20 && line.length() != 0)
-    		endLeft(line);
+    	    newCus(line);
     	//runs probability check for each customer
     	for (int i = 1; i < line.length(); i++) { //loop doesn't include last in line
     		if (prob() <= 10)
     			randLeft(line,i);
     	}
+    	//more probability checks
     	if (prob() < 10)
     		VIP(line);
+    	if (prob() <= 40 && line.length() != 0)
+    		helped(line);
+    	if (prob() <= 20 && line.length() != 0)
+    		endLeft(line);
     	cout << "Resulting line:\n";
     	line.print();
     }
