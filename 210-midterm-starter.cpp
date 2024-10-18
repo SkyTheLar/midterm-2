@@ -273,13 +273,16 @@ int main() {
 
     for (int i = 2; i <= 20; i++) {
     	cout << "Time step #" << i << endl;
-    	if (prob() <= 40)
+    	if (prob() <= 40 && line.length() != 0)
     		helped(line);
     	if (prob() <= 60)
     		newCus(line);
-    	if (prob() <= 20)
+    	if (prob() <= 20 && line.length() != 0)
     		endLeft(line);
-
+    	for (int i = 1; i <= line.length(); i++) {
+    		if (prob() <= 10)
+    			randLeft(line,i);
+    	}
     	if (prob() < 10)
     		VIP(line);
     	cout << "Resulting line:\n";
@@ -296,7 +299,7 @@ string getName() {
 		cout << "File open error.\n";
 		return "";
 	}
-	int num = (rand() % MAX_NM);
+	int num = (rand() % MAX_NM) + 1;
 	string name;
 	for (int i = 0; i < num; i++)
 		getline(in, name);
