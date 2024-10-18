@@ -10,7 +10,7 @@ COMSC 210 | Midterm 2 | Skylar Robinson | IDE Used: Eclipse
 #include <fstream>
 using namespace std;
 
-const int MAX_NM = 99;
+const int MAX_NM = 99; //max names
 
 class DoublyLinkedList {
 private:
@@ -249,13 +249,13 @@ public:
     }
 };
 
-string getName();
-int prob();
-void helped(DoublyLinkedList&);
-void newCus(DoublyLinkedList&);
-void endLeft(DoublyLinkedList&);
-void randLeft(DoublyLinkedList&, int);
-void VIP(DoublyLinkedList&);
+string getName(); //returns a random name
+int prob(); //returns random number 1-100
+void helped(DoublyLinkedList&); //front customer is helped
+void newCus(DoublyLinkedList&); //new customer joins line
+void endLeft(DoublyLinkedList&); //customer at end of line leaves
+void randLeft(DoublyLinkedList&, int); //random customer leaves
+void VIP(DoublyLinkedList&); //vip joins the front of the line
 
 int main() {
 	srand(time(0));
@@ -271,15 +271,18 @@ int main() {
     cout << "Resulting line:\n";
     line.print();
 
+    //loop to time interval 20
     for (int i = 2; i <= 20; i++) {
     	cout << "Time step #" << i << endl;
+    	//different probability checks
     	if (prob() <= 40 && line.length() != 0)
     		helped(line);
     	if (prob() <= 60)
     		newCus(line);
     	if (prob() <= 20 && line.length() != 0)
     		endLeft(line);
-    	for (int i = 1; i <= line.length(); i++) {
+    	//runs probability check for each customer
+    	for (int i = 1; i < line.length(); i++) { //loop doesn't include last in line
     		if (prob() <= 10)
     			randLeft(line,i);
     	}
@@ -303,6 +306,7 @@ string getName() {
 	string name;
 	for (int i = 0; i < num; i++)
 		getline(in, name);
+	in.close();
 	return name;
 }
 
