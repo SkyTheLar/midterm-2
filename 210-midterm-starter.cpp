@@ -233,6 +233,20 @@ public:
         }
     	return temp->data;
     }
+
+    //length of list
+    int length() {
+    	if (!head){
+    		return 0;
+    	}
+    	Node* temp = head;
+    	int counter = 0;
+    	while (temp) {
+    		counter++;
+    		temp = temp->next;
+    	}
+    	return counter;
+    }
 };
 
 string getName();
@@ -247,14 +261,13 @@ int main() {
 	//create line
     DoublyLinkedList line;
 
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 5; i++)
     	line.push_back(getName());
 
     line.print();
-
-	for (int i = 0; i < 10; i++)
-		cout << line.getData(i + 1) << endl;
     
+    cout << "List lenfth: " << line.length();
+
     return 0;
 }
 
@@ -273,10 +286,21 @@ string getName() {
 }
 
 void helped(DoublyLinkedList d) {
-	cout << d.getData(1) << "is served.\n";
+	cout << d.getData(1) << " is served.\n";
 	d.pop_front();
 }
 
 void newCus(DoublyLinkedList d) {
+	string name = getName();
+	cout << name << " joined the line.\n";
+	d.push_back(name);
+}
+
+void endLeft(DoublyLinkedList d) {
+	cout << d.getData(d.length()) << " (at the rear) left the line.\n";
+	d.pop_back();
+}
+
+void randLeft() {
 
 }
