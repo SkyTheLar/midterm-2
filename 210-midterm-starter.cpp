@@ -210,6 +210,29 @@ public:
         }
         cout << endl;
     }
+
+    //getter
+    string getData(int pos) {
+    	if (!head) {
+    		cout << "List is empty." << endl;
+    	    return "";
+    	}
+        Node* temp = head;
+
+        for (int i = 1; i < pos; i++){
+            if (!temp) {
+                cout << "Position doesn't exist." << endl;
+                return "";
+            }
+            else
+                temp = temp->next;
+        }
+        if (!temp) {
+            cout << "Position doesn't exist." << endl;
+            return "";
+        }
+    	return temp->data;
+    }
 };
 
 string getName();
@@ -224,7 +247,13 @@ int main() {
 	//create line
     DoublyLinkedList line;
 
-    cout << getName();
+    for (int i = 0; i < 10; i++)
+    	line.push_back(getName());
+
+    line.print();
+
+	for (int i = 0; i < 10; i++)
+		cout << line.getData(i + 1) << endl;
     
     return 0;
 }
@@ -241,4 +270,13 @@ string getName() {
 	for (int i = 0; i < num; i++)
 		getline(in, name);
 	return name;
+}
+
+void helped(DoublyLinkedList d) {
+	cout << d.getData(1) << "is served.\n";
+	d.pop_front();
+}
+
+void newCus(DoublyLinkedList d) {
+
 }
