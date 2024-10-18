@@ -192,7 +192,7 @@ public:
             return;
         }
         while (current) {
-            cout << current->data << endl;
+            cout << "\t" << current->data << endl;
             current = current->next;
         }
         cout << endl;
@@ -205,7 +205,7 @@ public:
             return;
         }
         while (current) {
-            cout << current->data << endl;
+            cout << "\t" << current->data << endl;
             current = current->prev;
         }
         cout << endl;
@@ -250,23 +250,25 @@ public:
 };
 
 string getName();
-void helped(DoublyLinkedList);
-void newCus(DoublyLinkedList);
-void endLeft(DoublyLinkedList);
-void randLeft(DoublyLinkedList);
-void VIP(DoublyLinkedList);
+void helped(DoublyLinkedList&);
+void newCus(DoublyLinkedList&);
+void endLeft(DoublyLinkedList&);
+void randLeft(DoublyLinkedList&, int);
+void VIP(DoublyLinkedList&);
 
 int main() {
 	srand(time(0));
 	//create line
     DoublyLinkedList line;
 
-    for (int i = 0; i < 5; i++)
-    	line.push_back(getName());
+    cout << "Store opens:\n";
 
+    //populate line
+    for (int i = 0; i < 5; i++)
+    	newCus(line);
+
+    cout << "Resulting line:\n";
     line.print();
-    
-    cout << "List lenfth: " << line.length();
 
     return 0;
 }
@@ -285,22 +287,29 @@ string getName() {
 	return name;
 }
 
-void helped(DoublyLinkedList d) {
-	cout << d.getData(1) << " is served.\n";
+void helped(DoublyLinkedList &d) {
+	cout << "\t" << d.getData(1) << " is served.\n";
 	d.pop_front();
 }
 
-void newCus(DoublyLinkedList d) {
+void newCus(DoublyLinkedList &d) {
 	string name = getName();
-	cout << name << " joined the line.\n";
+	cout << "\t" << name << " joined the line.\n";
 	d.push_back(name);
 }
 
-void endLeft(DoublyLinkedList d) {
-	cout << d.getData(d.length()) << " (at the rear) left the line.\n";
+void endLeft(DoublyLinkedList &d) {
+	cout << "\t" << d.getData(d.length()) << " (at the rear) left the line.\n";
 	d.pop_back();
 }
 
-void randLeft() {
+void randLeft(DoublyLinkedList &d, int p) {
+	cout << "\t" << d.getData(p) << " left the line.\n";
+	d.delete_pos(p);
+}
 
+void VIP(DoublyLinkedList &d) {
+	string name = getName();
+	cout << "\t" << name << " (VIP) joins the front of the line.\n";
+	d.push_front(name);
 }
