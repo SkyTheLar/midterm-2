@@ -250,6 +250,7 @@ public:
 };
 
 string getName();
+int prob();
 void helped(DoublyLinkedList&);
 void newCus(DoublyLinkedList&);
 void endLeft(DoublyLinkedList&);
@@ -270,6 +271,21 @@ int main() {
     cout << "Resulting line:\n";
     line.print();
 
+    for (int i = 2; i <= 20; i++) {
+    	cout << "Time step #" << i << endl;
+    	if (prob() <= 40)
+    		helped(line);
+    	if (prob() <= 60)
+    		newCus(line);
+    	if (prob() <= 20)
+    		endLeft(line);
+
+    	if (prob() < 10)
+    		VIP(line);
+    	cout << "Resulting line:\n";
+    	line.print();
+    }
+
     return 0;
 }
 
@@ -285,6 +301,10 @@ string getName() {
 	for (int i = 0; i < num; i++)
 		getline(in, name);
 	return name;
+}
+
+int prob() {
+	return rand() % 100 + 1;
 }
 
 void helped(DoublyLinkedList &d) {
