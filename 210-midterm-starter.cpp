@@ -10,7 +10,7 @@ COMSC 210 | Midterm 2 | Skylar Robinson | IDE Used: Eclipse
 #include <fstream>
 using namespace std;
 
-const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
+const int MAX_NM = 99;
 
 class DoublyLinkedList {
 private:
@@ -224,13 +224,21 @@ int main() {
 	//create line
     DoublyLinkedList line;
 
-    //initialize line
-
-
+    cout << getName();
     
     return 0;
 }
 
-getName() {
-	infile
+string getName() {
+	ifstream in;
+	in.open("names.txt");
+	if (!in) {
+		cout << "File open error.\n";
+		return "";
+	}
+	int num = (rand() % MAX_NM);
+	string name;
+	for (int i = 0; i < num; i++)
+		getline(in, name);
+	return name;
 }
